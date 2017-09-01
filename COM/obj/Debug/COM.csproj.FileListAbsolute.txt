@@ -28,3 +28,13 @@ C:\Users\tony8\Desktop\COM\COM\obj\Debug\COM.csproj.GenerateResource.Cache
 C:\Users\tony8\Desktop\COM\COM\obj\Debug\COM.csproj.CoreCompileInputs.cache
 C:\Users\tony8\Desktop\COM\COM\obj\Debug\COM.exe
 C:\Users\tony8\Desktop\COM\COM\obj\Debug\COM.pdb
+C:\Users\KEN-PC\Documents\Visual Studio 2017\Projects\SERIALPORT\COM\bin\Debug\COM.exe.config
+C:\Users\KEN-PC\Documents\Visual Studio 2017\Projects\SERIALPORT\COM\bin\Debug\COM.exe
+C:\Users\KEN-PC\Documents\Visual Studio 2017\Projects\SERIALPORT\COM\bin\Debug\COM.pdb
+C:\Users\KEN-PC\Documents\Visual Studio 2017\Projects\SERIALPORT\COM\obj\Debug\COM.csprojResolveAssemblyReference.cache
+C:\Users\KEN-PC\Documents\Visual Studio 2017\Projects\SERIALPORT\COM\obj\Debug\COM.Form1.resources
+C:\Users\KEN-PC\Documents\Visual Studio 2017\Projects\SERIALPORT\COM\obj\Debug\COM.Properties.Resources.resources
+C:\Users\KEN-PC\Documents\Visual Studio 2017\Projects\SERIALPORT\COM\obj\Debug\COM.csproj.GenerateResource.Cache
+C:\Users\KEN-PC\Documents\Visual Studio 2017\Projects\SERIALPORT\COM\obj\Debug\COM.csproj.CoreCompileInputs.cache
+C:\Users\KEN-PC\Documents\Visual Studio 2017\Projects\SERIALPORT\COM\obj\Debug\COM.exe
+C:\Users\KEN-PC\Documents\Visual Studio 2017\Projects\SERIALPORT\COM\obj\Debug\COM.pdb
