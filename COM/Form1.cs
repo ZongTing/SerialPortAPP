@@ -29,7 +29,8 @@ namespace COM
         byte[] buffer = new byte[20];
         //??
         int returnBitsCount;
-        StreamWriter sw = new StreamWriter(@"E:\ABC.txt");
+        //在Bin資料夾裡
+        StreamWriter sw = new StreamWriter(@"Log.txt");
 
         private Thread mThread;
         static Queue<long> mQueue;
