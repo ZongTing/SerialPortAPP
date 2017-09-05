@@ -55,6 +55,10 @@
             this.buttonIndicatedValue = new System.Windows.Forms.Button();
             this.buttonTransmissionMode00 = new System.Windows.Forms.Button();
             this.buttonTransmissionMode10 = new System.Windows.Forms.Button();
+            this.buttonMinimumSetting = new System.Windows.Forms.Button();
+            this.buttonMaximumSetting = new System.Windows.Forms.Button();
+            this.textMinimumSetting = new System.Windows.Forms.TextBox();
+            this.textMaximumSetting = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -243,11 +247,11 @@
             // 
             // textReceive
             // 
-            this.textReceive.Location = new System.Drawing.Point(36, 291);
+            this.textReceive.Location = new System.Drawing.Point(36, 332);
             this.textReceive.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textReceive.Multiline = true;
             this.textReceive.Name = "textReceive";
-            this.textReceive.Size = new System.Drawing.Size(461, 143);
+            this.textReceive.Size = new System.Drawing.Size(461, 102);
             this.textReceive.TabIndex = 21;
             // 
             // buttonRSlinetest
@@ -285,7 +289,7 @@
             // 
             // buttonIndicatedValue
             // 
-            this.buttonIndicatedValue.Location = new System.Drawing.Point(36, 242);
+            this.buttonIndicatedValue.Location = new System.Drawing.Point(104, 242);
             this.buttonIndicatedValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonIndicatedValue.Name = "buttonIndicatedValue";
             this.buttonIndicatedValue.Size = new System.Drawing.Size(131, 36);
@@ -296,10 +300,10 @@
             // 
             // buttonTransmissionMode00
             // 
-            this.buttonTransmissionMode00.Location = new System.Drawing.Point(173, 242);
+            this.buttonTransmissionMode00.Location = new System.Drawing.Point(36, 282);
             this.buttonTransmissionMode00.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonTransmissionMode00.Name = "buttonTransmissionMode00";
-            this.buttonTransmissionMode00.Size = new System.Drawing.Size(120, 36);
+            this.buttonTransmissionMode00.Size = new System.Drawing.Size(131, 36);
             this.buttonTransmissionMode00.TabIndex = 26;
             this.buttonTransmissionMode00.Text = "感測資料(ON)";
             this.buttonTransmissionMode00.UseVisualStyleBackColor = true;
@@ -307,20 +311,68 @@
             // 
             // buttonTransmissionMode10
             // 
-            this.buttonTransmissionMode10.Location = new System.Drawing.Point(299, 242);
+            this.buttonTransmissionMode10.Location = new System.Drawing.Point(173, 282);
             this.buttonTransmissionMode10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonTransmissionMode10.Name = "buttonTransmissionMode10";
-            this.buttonTransmissionMode10.Size = new System.Drawing.Size(120, 36);
+            this.buttonTransmissionMode10.Size = new System.Drawing.Size(131, 36);
             this.buttonTransmissionMode10.TabIndex = 27;
             this.buttonTransmissionMode10.Text = "感測資料(OFF)";
             this.buttonTransmissionMode10.UseVisualStyleBackColor = true;
             this.buttonTransmissionMode10.Click += new System.EventHandler(this.buttonTransmissionMode10_Click);
+            // 
+            // buttonMinimumSetting
+            // 
+            this.buttonMinimumSetting.Location = new System.Drawing.Point(463, 218);
+            this.buttonMinimumSetting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonMinimumSetting.Name = "buttonMinimumSetting";
+            this.buttonMinimumSetting.Size = new System.Drawing.Size(87, 36);
+            this.buttonMinimumSetting.TabIndex = 28;
+            this.buttonMinimumSetting.Text = "設定最小";
+            this.buttonMinimumSetting.UseVisualStyleBackColor = true;
+            this.buttonMinimumSetting.Click += new System.EventHandler(this.buttonMinimumSetting_Click);
+            // 
+            // buttonMaximumSetting
+            // 
+            this.buttonMaximumSetting.Location = new System.Drawing.Point(463, 258);
+            this.buttonMaximumSetting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonMaximumSetting.Name = "buttonMaximumSetting";
+            this.buttonMaximumSetting.Size = new System.Drawing.Size(87, 36);
+            this.buttonMaximumSetting.TabIndex = 29;
+            this.buttonMaximumSetting.Text = "設定最大";
+            this.buttonMaximumSetting.UseVisualStyleBackColor = true;
+            this.buttonMaximumSetting.Click += new System.EventHandler(this.buttonMaximumSetting_Click);
+            // 
+            // textMinimumSetting
+            // 
+            this.textMinimumSetting.Location = new System.Drawing.Point(381, 223);
+            this.textMinimumSetting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textMinimumSetting.Multiline = true;
+            this.textMinimumSetting.Name = "textMinimumSetting";
+            this.textMinimumSetting.Size = new System.Drawing.Size(76, 31);
+            this.textMinimumSetting.TabIndex = 30;
+            this.textMinimumSetting.Text = "0";
+            this.textMinimumSetting.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textMinimumSetting_KeyPress);
+            // 
+            // textMaximumSetting
+            // 
+            this.textMaximumSetting.Location = new System.Drawing.Point(381, 258);
+            this.textMaximumSetting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textMaximumSetting.Multiline = true;
+            this.textMaximumSetting.Name = "textMaximumSetting";
+            this.textMaximumSetting.Size = new System.Drawing.Size(76, 31);
+            this.textMaximumSetting.TabIndex = 31;
+            this.textMaximumSetting.Text = "0";
+            this.textMaximumSetting.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textMaximumSetting_KeyPress);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 476);
+            this.Controls.Add(this.textMaximumSetting);
+            this.Controls.Add(this.textMinimumSetting);
+            this.Controls.Add(this.buttonMaximumSetting);
+            this.Controls.Add(this.buttonMinimumSetting);
             this.Controls.Add(this.buttonTransmissionMode10);
             this.Controls.Add(this.buttonTransmissionMode00);
             this.Controls.Add(this.buttonIndicatedValue);
@@ -383,6 +435,10 @@
         private System.Windows.Forms.Button buttonIndicatedValue;
         private System.Windows.Forms.Button buttonTransmissionMode00;
         private System.Windows.Forms.Button buttonTransmissionMode10;
+        private System.Windows.Forms.Button buttonMinimumSetting;
+        private System.Windows.Forms.Button buttonMaximumSetting;
+        private System.Windows.Forms.TextBox textMinimumSetting;
+        private System.Windows.Forms.TextBox textMaximumSetting;
     }
 }
 

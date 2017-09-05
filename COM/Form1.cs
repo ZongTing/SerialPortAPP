@@ -23,12 +23,6 @@ namespace COM
 {
     public partial class Form1 : Form
     {
-        //壓力
-        string pressure;
-        //?? ASCII
-        byte[] buffer = new byte[20];
-        //??
-        int returnBitsCount;
         //在Bin資料夾裡
         StreamWriter sw = new StreamWriter(@"Log.txt");
 
@@ -45,9 +39,9 @@ namespace COM
             EVENT_SEND_CMD_TRANSMISSIONMODE00,//MOD00
             EVENT_SEND_CMD_TRANSMISSIONMODE10,//MOD10
             EVENT_RECEIVE_CMD_TRANSMISSIONMODE,//接收MOD重複回傳的資料
-            EVENT_SEND_CMD_TXTUSING,
-            EVENT_SEND_CMD_OFFSETADJUSTMENT,//校正（後-前=實際）
-            EVENT_RECEIVE_CMD_OFFSETADJUSTMENT,
+            EVENT_SEND_CMD_TXTUSING,//手動輸入指令區域
+            EVENT_SEND_CMD_MINIMUMLIMIT,//設定最小限制
+            EVENT_SEND_CMD_MAXIMUMLIMIT,//設定最大限制
         };
 
         private void threadProcess()
@@ -186,57 +180,55 @@ namespace COM
                         case queueType.EVENT_SEND_CMD_TXTUSING:
                             if (comport.IsOpen)
                             {
-                                if (comport.IsOpen)
-                                {
-                                    DateTime dateTime = DateTime.Now;
-                                    String dateTimeNow = dateTime.ToShortTimeString();
-                                    String commandData = textSend.Text;
-
-                                    // "\r\n"為Windows換行(<CR>)
-                                    comport.Write(commandData + "\r\n");
-                                    textSend.Clear();
-                                    textShow.AppendText("[" + dateTimeNow + "]" + "Sent:" + commandData + "\n");
-
-                                    Thread.Sleep(100);
-                                    mQueue.Enqueue((long)queueType.EVENT_RECEIVE_CMD_DATA);
-                                }
-                            }
-                            break;
-                        case queueType.EVENT_SEND_CMD_OFFSETADJUSTMENT:
-                            if (comport.IsOpen)
-                            {
                                 DateTime dateTime = DateTime.Now;
                                 String dateTimeNow = dateTime.ToShortTimeString();
-                                String commandData = "GDT1";
+                                String commandData = textSend.Text;
 
                                 // "\r\n"為Windows換行(<CR>)
                                 comport.Write(commandData + "\r\n");
-
+                                textSend.Clear();
                                 textShow.AppendText("[" + dateTimeNow + "]" + "Sent:" + commandData + "\n");
-                                //設備回傳時間(millisecond)
-                                //目前先假設為100(尚未參考Spec)
+
                                 Thread.Sleep(100);
-                                mQueue.Enqueue((long)queueType.EVENT_RECEIVE_CMD_OFFSETADJUSTMENT);
+                                mQueue.Enqueue((long)queueType.EVENT_RECEIVE_CMD_DATA);
                             }
                             break;
-                        case queueType.EVENT_RECEIVE_CMD_OFFSETADJUSTMENT:
+                        case queueType.EVENT_SEND_CMD_MINIMUMLIMIT:
                             if (comport.IsOpen)
                             {
                                 DateTime dateTime = DateTime.Now;
                                 String dateTimeNow = dateTime.ToShortTimeString();
-                                String commandData = "GDT1";
+                                String commandData = "SCV2,+";
+                                String commandValue = textMinimumSetting.Text.PadLeft(5, '0');
 
                                 // "\r\n"為Windows換行(<CR>)
-                                comport.Write(commandData + "\r\n");
+                                comport.Write(commandData + commandValue + "\r\n");
 
-                                textShow.AppendText("[" + dateTimeNow + "]" + "Sent:" + commandData + "\n");
+                                textShow.AppendText("[" + dateTimeNow + "]" + "Sent:" + commandData + commandValue + "\n");
                                 //設備回傳時間(millisecond)
                                 //目前先假設為100(尚未參考Spec)
                                 Thread.Sleep(100);
                                 mQueue.Enqueue((long)queueType.EVENT_RECEIVE_CMD_DATA);
                             }
                             break;
-                            
+                        case queueType.EVENT_SEND_CMD_MAXIMUMLIMIT:
+                            if (comport.IsOpen)
+                            {
+                                DateTime dateTime = DateTime.Now;
+                                String dateTimeNow = dateTime.ToShortTimeString();
+                                String commandData = "SCV1,+";
+                                String commandValue = textMaximumSetting.Text.PadLeft(5, '0');
+
+                                // "\r\n"為Windows換行(<CR>)
+                                comport.Write(commandData + commandValue + "\r\n");
+
+                                textShow.AppendText("[" + dateTimeNow + "]" + "Sent:" + commandData + commandValue + "\n");
+                                //設備回傳時間(millisecond)
+                                //目前先假設為100(尚未參考Spec)
+                                Thread.Sleep(100);
+                                mQueue.Enqueue((long)queueType.EVENT_RECEIVE_CMD_DATA);
+                            }
+                            break;
                     }
                 }
             }
@@ -280,6 +272,7 @@ namespace COM
             }
         }
 
+        //EventHandler for MOD00(字串分析在這)
         private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort sp = (SerialPort)sender;
@@ -289,7 +282,14 @@ namespace COM
 
             string indata = sp.ReadExisting();
 
-            textShow.AppendText("[" + dateTimeNow + "]" + "Received: " + indata + "\n");
+            //切割所需字串
+            textShow.AppendText("[" + dateTimeNow + "]" + "Received: " + indata.Substring(2, 6) + "\n");
+
+            if (Convert.ToInt32(indata.Substring(3, 5)) > 100)
+            {
+                MessageBox.Show("ERROR");
+            }
+
             textReceive.AppendText(indata + "\n");
         }
 
@@ -310,13 +310,8 @@ namespace COM
                 mQueue = new Queue<long>();
                 mThread = new Thread(threadProcess);
                 mThread.Start();
+                
             }
-        }
-
-        private void buttonSend_Click(object sender, EventArgs e)
-        {
-            if (comport.IsOpen)
-                mQueue.Enqueue((long)queueType.EVENT_SEND_CMD_TXTUSING);
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
@@ -343,6 +338,15 @@ namespace COM
             {
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        #region 已完成按鈕區
+
+        //手動輸入指令區域
+        private void buttonSend_Click(object sender, EventArgs e)
+        {
+            if (comport.IsOpen)
+                mQueue.Enqueue((long)queueType.EVENT_SEND_CMD_TXTUSING);
         }
 
         //機器初始化按鈕
@@ -372,6 +376,8 @@ namespace COM
             if (comport.IsOpen)
                 mQueue.Enqueue((long)queueType.EVENT_SEND_CMD_INDICATEDVALUE);
         }
+
+        #endregion
 
         //MOD00
         private void buttonTransmissionMode00_Click(object sender, EventArgs e)
@@ -412,6 +418,47 @@ namespace COM
             }
         }
 
+        #region 最大最小按鈕
+        //設定最小限制
+        private void buttonMinimumSetting_Click(object sender, EventArgs e)
+        {
+            if (comport.IsOpen)
+            {
+                if (textMinimumSetting.Text != "")
+                    mQueue.Enqueue((long)queueType.EVENT_SEND_CMD_MINIMUMLIMIT);
+            }
+        }
+
+        //限制只能輸入數字
+        private void textMinimumSetting_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((int)e.KeyChar < 48 | (int)e.KeyChar > 57) & (int)e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        //設定最大限制
+        private void buttonMaximumSetting_Click(object sender, EventArgs e)
+        {
+            if (comport.IsOpen)
+            {
+                if(textMaximumSetting.Text != "")
+                mQueue.Enqueue((long)queueType.EVENT_SEND_CMD_MAXIMUMLIMIT);
+            }
+        }
+
+        //限制只能輸入數字
+        private void textMaximumSetting_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((int)e.KeyChar < 48 | (int)e.KeyChar > 57) & (int)e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
+        #endregion
+
+        #region 不需要用到的function
         private void textSend_TextChanged(object sender, EventArgs e)
         {
 
@@ -422,5 +469,8 @@ namespace COM
 
         }
 
+        #endregion
+
+        
     }
 }

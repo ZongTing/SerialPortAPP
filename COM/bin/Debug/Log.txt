@@ -1,0 +1,21 @@
+[上午 11:11]COM6 Connected
+[上午 11:11]Sent:SCV2,+00010
+[上午 11:11]Received: Error B
+
+[上午 11:11]COM6 Connected
+[上午 11:11]Sent:SCV2,+00010
+[上午 11:11]Received: Error B
+
+[上午 11:11]Sent:SCV2,+00010
+[上午 11:11]Received: ok
+
+[上午 11:11]COM6 Connected
+[上午 11:11]Sent:SCV2,+00010
+[上午 11:11]Received: Error B
+
+[上午 11:11]Sent:SCV2,+00010
+[上午 11:11]Received: ok
+
+[上午 11:11]Sent:SCV1,+00100
+[上午 11:11]Received: ok
+
