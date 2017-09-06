@@ -23,12 +23,16 @@ namespace COM
 {
     public partial class Form1 : Form
     {
+        //機器安全壓力限制
+        private int MachineSafePressure = 150;
         //在Bin資料夾裡
         StreamWriter sw = new StreamWriter(@"Log.txt");
 
         private Thread mThread;
         static Queue<long> mQueue;
         // TODO: I/O 
+
+        //按鈕狀態
         private enum queueType
         {
             EVENT_SEND_CMD_INITIALIZE,//RES
@@ -67,6 +71,7 @@ namespace COM
                                 //設備回傳時間(millisecond)
                                 //目前先假設為100(尚未參考Spec)
                                 Thread.Sleep(100);
+
                                 mQueue.Enqueue((long)queueType.EVENT_RECEIVE_CMD_DATA);
                             }
                             break;
@@ -281,11 +286,13 @@ namespace COM
             String dateTimeNow = dateTime.ToShortTimeString();
 
             string indata = sp.ReadExisting();
+            string MachineStatus = indata.Substring(11, 8);
 
             //切割所需字串
             textShow.AppendText("[" + dateTimeNow + "]" + "Received: " + indata.Substring(2, 6) + "\n");
 
-            if (Convert.ToInt32(indata.Substring(3, 5)) > 100)
+            //判斷重量是否超出標準
+            if (Convert.ToInt32(indata.Substring(3, 5)) > MachineSafePressure)
             {
                 MessageBox.Show("ERROR");
             }

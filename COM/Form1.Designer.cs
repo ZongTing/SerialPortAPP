@@ -59,6 +59,15 @@
             this.buttonMaximumSetting = new System.Windows.Forms.Button();
             this.textMinimumSetting = new System.Windows.Forms.TextBox();
             this.textMaximumSetting = new System.Windows.Forms.TextBox();
+            this.lowLight = new System.Windows.Forms.Label();
+            this.OKlight = new System.Windows.Forms.Label();
+            this.highLight = new System.Windows.Forms.Label();
+            this.statusHighLight = new System.Windows.Forms.Label();
+            this.statusLowLight = new System.Windows.Forms.Label();
+            this.statusOKLight = new System.Windows.Forms.Label();
+            this.statusDuringMeasurement = new System.Windows.Forms.Label();
+            this.statusDetectingPeak = new System.Windows.Forms.Label();
+            this.statusDuringHold = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -134,11 +143,11 @@
             // 
             // textShow
             // 
-            this.textShow.Location = new System.Drawing.Point(580, 98);
+            this.textShow.Location = new System.Drawing.Point(714, 52);
             this.textShow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textShow.Multiline = true;
             this.textShow.Name = "textShow";
-            this.textShow.Size = new System.Drawing.Size(399, 336);
+            this.textShow.Size = new System.Drawing.Size(265, 382);
             this.textShow.TabIndex = 11;
             // 
             // label4
@@ -239,7 +248,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(759, 59);
+            this.label8.Location = new System.Drawing.Point(825, 20);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 15);
             this.label8.TabIndex = 20;
@@ -247,7 +256,7 @@
             // 
             // textReceive
             // 
-            this.textReceive.Location = new System.Drawing.Point(36, 332);
+            this.textReceive.Location = new System.Drawing.Point(36, 354);
             this.textReceive.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textReceive.Multiline = true;
             this.textReceive.Name = "textReceive";
@@ -289,7 +298,7 @@
             // 
             // buttonIndicatedValue
             // 
-            this.buttonIndicatedValue.Location = new System.Drawing.Point(104, 242);
+            this.buttonIndicatedValue.Location = new System.Drawing.Point(102, 274);
             this.buttonIndicatedValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonIndicatedValue.Name = "buttonIndicatedValue";
             this.buttonIndicatedValue.Size = new System.Drawing.Size(131, 36);
@@ -300,7 +309,7 @@
             // 
             // buttonTransmissionMode00
             // 
-            this.buttonTransmissionMode00.Location = new System.Drawing.Point(36, 282);
+            this.buttonTransmissionMode00.Location = new System.Drawing.Point(36, 314);
             this.buttonTransmissionMode00.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonTransmissionMode00.Name = "buttonTransmissionMode00";
             this.buttonTransmissionMode00.Size = new System.Drawing.Size(131, 36);
@@ -311,7 +320,7 @@
             // 
             // buttonTransmissionMode10
             // 
-            this.buttonTransmissionMode10.Location = new System.Drawing.Point(173, 282);
+            this.buttonTransmissionMode10.Location = new System.Drawing.Point(173, 314);
             this.buttonTransmissionMode10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonTransmissionMode10.Name = "buttonTransmissionMode10";
             this.buttonTransmissionMode10.Size = new System.Drawing.Size(131, 36);
@@ -364,11 +373,110 @@
             this.textMaximumSetting.Text = "0";
             this.textMaximumSetting.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textMaximumSetting_KeyPress);
             // 
+            // lowLight
+            // 
+            this.lowLight.AutoSize = true;
+            this.lowLight.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lowLight.Location = new System.Drawing.Point(631, 248);
+            this.lowLight.Name = "lowLight";
+            this.lowLight.Size = new System.Drawing.Size(49, 34);
+            this.lowLight.TabIndex = 33;
+            this.lowLight.Text = "●";
+            // 
+            // OKlight
+            // 
+            this.OKlight.AutoSize = true;
+            this.OKlight.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.OKlight.Location = new System.Drawing.Point(631, 160);
+            this.OKlight.Name = "OKlight";
+            this.OKlight.Size = new System.Drawing.Size(49, 34);
+            this.OKlight.TabIndex = 34;
+            this.OKlight.Text = "●";
+            // 
+            // highLight
+            // 
+            this.highLight.AutoSize = true;
+            this.highLight.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.highLight.Location = new System.Drawing.Point(631, 78);
+            this.highLight.Name = "highLight";
+            this.highLight.Size = new System.Drawing.Size(49, 34);
+            this.highLight.TabIndex = 35;
+            this.highLight.Text = "●";
+            // 
+            // statusHighLight
+            // 
+            this.statusHighLight.AutoSize = true;
+            this.statusHighLight.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.statusHighLight.Location = new System.Drawing.Point(576, 78);
+            this.statusHighLight.Name = "statusHighLight";
+            this.statusHighLight.Size = new System.Drawing.Size(49, 34);
+            this.statusHighLight.TabIndex = 36;
+            this.statusHighLight.Text = "●";
+            // 
+            // statusLowLight
+            // 
+            this.statusLowLight.AutoSize = true;
+            this.statusLowLight.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.statusLowLight.Location = new System.Drawing.Point(576, 112);
+            this.statusLowLight.Name = "statusLowLight";
+            this.statusLowLight.Size = new System.Drawing.Size(49, 34);
+            this.statusLowLight.TabIndex = 37;
+            this.statusLowLight.Text = "●";
+            // 
+            // statusOKLight
+            // 
+            this.statusOKLight.AutoSize = true;
+            this.statusOKLight.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.statusOKLight.Location = new System.Drawing.Point(576, 146);
+            this.statusOKLight.Name = "statusOKLight";
+            this.statusOKLight.Size = new System.Drawing.Size(49, 34);
+            this.statusOKLight.TabIndex = 38;
+            this.statusOKLight.Text = "●";
+            // 
+            // statusDuringMeasurement
+            // 
+            this.statusDuringMeasurement.AutoSize = true;
+            this.statusDuringMeasurement.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.statusDuringMeasurement.Location = new System.Drawing.Point(576, 180);
+            this.statusDuringMeasurement.Name = "statusDuringMeasurement";
+            this.statusDuringMeasurement.Size = new System.Drawing.Size(49, 34);
+            this.statusDuringMeasurement.TabIndex = 39;
+            this.statusDuringMeasurement.Text = "●";
+            // 
+            // statusDetectingPeak
+            // 
+            this.statusDetectingPeak.AutoSize = true;
+            this.statusDetectingPeak.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.statusDetectingPeak.Location = new System.Drawing.Point(576, 214);
+            this.statusDetectingPeak.Name = "statusDetectingPeak";
+            this.statusDetectingPeak.Size = new System.Drawing.Size(49, 34);
+            this.statusDetectingPeak.TabIndex = 40;
+            this.statusDetectingPeak.Text = "●";
+            // 
+            // statusDuringHold
+            // 
+            this.statusDuringHold.AutoSize = true;
+            this.statusDuringHold.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.statusDuringHold.Location = new System.Drawing.Point(576, 248);
+            this.statusDuringHold.Name = "statusDuringHold";
+            this.statusDuringHold.Size = new System.Drawing.Size(49, 34);
+            this.statusDuringHold.TabIndex = 41;
+            this.statusDuringHold.Text = "●";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 476);
+            this.Controls.Add(this.statusDuringHold);
+            this.Controls.Add(this.statusDetectingPeak);
+            this.Controls.Add(this.statusDuringMeasurement);
+            this.Controls.Add(this.statusOKLight);
+            this.Controls.Add(this.statusLowLight);
+            this.Controls.Add(this.statusHighLight);
+            this.Controls.Add(this.highLight);
+            this.Controls.Add(this.OKlight);
+            this.Controls.Add(this.lowLight);
             this.Controls.Add(this.textMaximumSetting);
             this.Controls.Add(this.textMinimumSetting);
             this.Controls.Add(this.buttonMaximumSetting);
@@ -439,6 +547,15 @@
         private System.Windows.Forms.Button buttonMaximumSetting;
         private System.Windows.Forms.TextBox textMinimumSetting;
         private System.Windows.Forms.TextBox textMaximumSetting;
+        private System.Windows.Forms.Label lowLight;
+        private System.Windows.Forms.Label OKlight;
+        private System.Windows.Forms.Label highLight;
+        private System.Windows.Forms.Label statusHighLight;
+        private System.Windows.Forms.Label statusLowLight;
+        private System.Windows.Forms.Label statusOKLight;
+        private System.Windows.Forms.Label statusDuringMeasurement;
+        private System.Windows.Forms.Label statusDetectingPeak;
+        private System.Windows.Forms.Label statusDuringHold;
     }
 }
 
