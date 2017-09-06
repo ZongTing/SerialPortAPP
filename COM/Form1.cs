@@ -20,9 +20,13 @@ using System.Windows.Forms;
  */
 
 namespace COM
-{
+{    
+
     public partial class Form1 : Form
     {
+        public bool sampling = false;
+        public int samplerate = 0;
+
         //在Bin資料夾裡
         StreamWriter sw = new StreamWriter(@"Log.txt");
 
@@ -242,6 +246,7 @@ namespace COM
 
             InitializeComponent();
             buttonClose.Enabled = false;
+            samplestop.Enabled = false;
             foreach (String ports in SerialPort.GetPortNames())
             {
                 txtPort.Items.Add(ports);
@@ -291,6 +296,24 @@ namespace COM
             }
 
             textReceive.AppendText(indata + "\n");
+        }
+
+        //sampling thread
+        private void Portsampling()
+        {
+            try
+            {
+                while (sampling)
+                {
+                    comport.Write("GDT1\r\n");
+                    mQueue.Enqueue((long)queueType.EVENT_RECEIVE_CMD_DATA);
+                    Thread.Sleep(samplerate);                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         //需要更改
@@ -377,6 +400,130 @@ namespace COM
                 mQueue.Enqueue((long)queueType.EVENT_SEND_CMD_INDICATEDVALUE);
         }
 
+        //start sampling
+        private void Samplestart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comport.IsOpen)
+                {
+                    sampling = true;
+                    samplestart.Enabled = false;
+                    samplestop.Enabled = true;
+                    samplerate = Convert.ToInt32(textBoxsamplerate.Text);
+                    Thread comThread = new Thread(Portsampling);
+                    comThread.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //stop sampling
+        private void Samplestop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comport.IsOpen)
+                {
+                    sampling = false;
+                    samplestart.Enabled = true;
+                    samplestop.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //set parameter
+        private void Setparameter_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comport.IsOpen)
+                {
+                    DateTime dateTime = DateTime.Now;
+                    String dateTimeNow = dateTime.ToShortTimeString();
+
+                    int baudrate = Convert.ToInt32(txtBaudRate.Text);
+                    string bdrate = "0";
+                    switch (baudrate)
+                    {
+                        case 2400:
+                            bdrate = "0";
+                            break;
+                        case 4800:
+                            bdrate = "1";
+                            break;
+                        case 9600:
+                            bdrate = "2";
+                            break;
+                        case 19200:
+                            bdrate = "3";
+                            break;
+                        case 38400:
+                            bdrate = "4";
+                            break;
+                    }
+
+                    string receivedeli = "1";
+                    string senddeli = "0";
+
+                    string databt = "0";
+                    switch (txtDatabits.Text)
+                    {
+                        case "7":
+                            databt = "0";
+                            break;
+                        case "8":
+                            databt = "1";
+                            break;
+                    }
+
+                    string paritybt = "0";
+                    switch (txtParity.Text)
+                    {
+                        case "None":
+                            paritybt = "0";
+                            break;
+                        case "Odd":
+                            paritybt = "1";
+                            break;
+                        case "Even":
+                            paritybt = "2";
+                            break;
+                    }
+
+                    string stopbt = "0";
+
+                    switch (txtStopbits.Text)
+                    {
+                        case "One":
+                            stopbt = "1";
+                            break;
+                        case "Two":
+                            stopbt = "0";
+                            break;
+                    }
+
+                    String commandData = "SRS" + bdrate + "," + receivedeli + "," + senddeli + "," + databt + "," + paritybt + "," + stopbt + "\r\n";
+
+                    // "\r\n"為Windows換行
+                    textShow.AppendText("[" + dateTimeNow + "]" + " Sent: " + commandData + "\n");
+                    comport.Write(commandData + "\r\n");
+                    mQueue.Enqueue((long)queueType.EVENT_RECEIVE_CMD_DATA);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         #endregion
 
         //MOD00
@@ -399,7 +546,7 @@ namespace COM
                 buttonTransmissionMode10.Enabled = false;
                 mQueue.Enqueue((long)queueType.EVENT_SEND_CMD_TRANSMISSIONMODE10);
             }
-        }
+        }       
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -458,19 +605,5 @@ namespace COM
         }
         #endregion
 
-        #region 不需要用到的function
-        private void textSend_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        #endregion
-
-        
     }
 }

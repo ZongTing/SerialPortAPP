@@ -59,6 +59,11 @@
             this.buttonMaximumSetting = new System.Windows.Forms.Button();
             this.textMinimumSetting = new System.Windows.Forms.TextBox();
             this.textMaximumSetting = new System.Windows.Forms.TextBox();
+            this.textBoxsamplerate = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.samplestart = new System.Windows.Forms.Button();
+            this.samplestop = new System.Windows.Forms.Button();
+            this.setparameter = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -110,11 +115,10 @@
             this.textSend.Name = "textSend";
             this.textSend.Size = new System.Drawing.Size(461, 86);
             this.textSend.TabIndex = 4;
-            this.textSend.TextChanged += new System.EventHandler(this.textSend_TextChanged);
             // 
             // buttonSend
             // 
-            this.buttonSend.Location = new System.Drawing.Point(503, 148);
+            this.buttonSend.Location = new System.Drawing.Point(519, 148);
             this.buttonSend.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(71, 36);
@@ -134,7 +138,7 @@
             // 
             // textShow
             // 
-            this.textShow.Location = new System.Drawing.Point(580, 98);
+            this.textShow.Location = new System.Drawing.Point(596, 98);
             this.textShow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textShow.Multiline = true;
             this.textShow.Name = "textShow";
@@ -239,7 +243,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(759, 59);
+            this.label8.Location = new System.Drawing.Point(773, 66);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 15);
             this.label8.TabIndex = 20;
@@ -256,10 +260,10 @@
             // 
             // buttonRSlinetest
             // 
-            this.buttonRSlinetest.Location = new System.Drawing.Point(143, 190);
+            this.buttonRSlinetest.Location = new System.Drawing.Point(162, 190);
             this.buttonRSlinetest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonRSlinetest.Name = "buttonRSlinetest";
-            this.buttonRSlinetest.Size = new System.Drawing.Size(101, 36);
+            this.buttonRSlinetest.Size = new System.Drawing.Size(120, 36);
             this.buttonRSlinetest.TabIndex = 22;
             this.buttonRSlinetest.Text = "連接線路";
             this.buttonRSlinetest.UseVisualStyleBackColor = true;
@@ -270,7 +274,7 @@
             this.buttonInitialize.Location = new System.Drawing.Point(36, 190);
             this.buttonInitialize.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonInitialize.Name = "buttonInitialize";
-            this.buttonInitialize.Size = new System.Drawing.Size(101, 36);
+            this.buttonInitialize.Size = new System.Drawing.Size(120, 36);
             this.buttonInitialize.TabIndex = 23;
             this.buttonInitialize.Text = "機器初始化";
             this.buttonInitialize.UseVisualStyleBackColor = true;
@@ -278,10 +282,10 @@
             // 
             // buttonOutPutModelInformation
             // 
-            this.buttonOutPutModelInformation.Location = new System.Drawing.Point(250, 190);
+            this.buttonOutPutModelInformation.Location = new System.Drawing.Point(288, 190);
             this.buttonOutPutModelInformation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonOutPutModelInformation.Name = "buttonOutPutModelInformation";
-            this.buttonOutPutModelInformation.Size = new System.Drawing.Size(101, 36);
+            this.buttonOutPutModelInformation.Size = new System.Drawing.Size(120, 36);
             this.buttonOutPutModelInformation.TabIndex = 24;
             this.buttonOutPutModelInformation.Text = "設備資料";
             this.buttonOutPutModelInformation.UseVisualStyleBackColor = true;
@@ -289,10 +293,10 @@
             // 
             // buttonIndicatedValue
             // 
-            this.buttonIndicatedValue.Location = new System.Drawing.Point(104, 242);
+            this.buttonIndicatedValue.Location = new System.Drawing.Point(36, 230);
             this.buttonIndicatedValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonIndicatedValue.Name = "buttonIndicatedValue";
-            this.buttonIndicatedValue.Size = new System.Drawing.Size(131, 36);
+            this.buttonIndicatedValue.Size = new System.Drawing.Size(120, 36);
             this.buttonIndicatedValue.TabIndex = 25;
             this.buttonIndicatedValue.Text = "感測資料(次)";
             this.buttonIndicatedValue.UseVisualStyleBackColor = true;
@@ -300,21 +304,21 @@
             // 
             // buttonTransmissionMode00
             // 
-            this.buttonTransmissionMode00.Location = new System.Drawing.Point(36, 282);
+            this.buttonTransmissionMode00.Location = new System.Drawing.Point(162, 230);
             this.buttonTransmissionMode00.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonTransmissionMode00.Name = "buttonTransmissionMode00";
-            this.buttonTransmissionMode00.Size = new System.Drawing.Size(131, 36);
+            this.buttonTransmissionMode00.Size = new System.Drawing.Size(120, 36);
             this.buttonTransmissionMode00.TabIndex = 26;
-            this.buttonTransmissionMode00.Text = "感測資料(ON)";
+            this.buttonTransmissionMode00.Text = "感測資料(ON)\r\n";
             this.buttonTransmissionMode00.UseVisualStyleBackColor = true;
             this.buttonTransmissionMode00.Click += new System.EventHandler(this.buttonTransmissionMode00_Click);
             // 
             // buttonTransmissionMode10
             // 
-            this.buttonTransmissionMode10.Location = new System.Drawing.Point(173, 282);
+            this.buttonTransmissionMode10.Location = new System.Drawing.Point(288, 230);
             this.buttonTransmissionMode10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonTransmissionMode10.Name = "buttonTransmissionMode10";
-            this.buttonTransmissionMode10.Size = new System.Drawing.Size(131, 36);
+            this.buttonTransmissionMode10.Size = new System.Drawing.Size(120, 36);
             this.buttonTransmissionMode10.TabIndex = 27;
             this.buttonTransmissionMode10.Text = "感測資料(OFF)";
             this.buttonTransmissionMode10.UseVisualStyleBackColor = true;
@@ -322,7 +326,7 @@
             // 
             // buttonMinimumSetting
             // 
-            this.buttonMinimumSetting.Location = new System.Drawing.Point(463, 218);
+            this.buttonMinimumSetting.Location = new System.Drawing.Point(503, 190);
             this.buttonMinimumSetting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonMinimumSetting.Name = "buttonMinimumSetting";
             this.buttonMinimumSetting.Size = new System.Drawing.Size(87, 36);
@@ -333,7 +337,7 @@
             // 
             // buttonMaximumSetting
             // 
-            this.buttonMaximumSetting.Location = new System.Drawing.Point(463, 258);
+            this.buttonMaximumSetting.Location = new System.Drawing.Point(503, 230);
             this.buttonMaximumSetting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonMaximumSetting.Name = "buttonMaximumSetting";
             this.buttonMaximumSetting.Size = new System.Drawing.Size(87, 36);
@@ -344,31 +348,83 @@
             // 
             // textMinimumSetting
             // 
-            this.textMinimumSetting.Location = new System.Drawing.Point(381, 223);
+            this.textMinimumSetting.Location = new System.Drawing.Point(421, 190);
             this.textMinimumSetting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textMinimumSetting.Multiline = true;
             this.textMinimumSetting.Name = "textMinimumSetting";
-            this.textMinimumSetting.Size = new System.Drawing.Size(76, 31);
+            this.textMinimumSetting.Size = new System.Drawing.Size(76, 36);
             this.textMinimumSetting.TabIndex = 30;
             this.textMinimumSetting.Text = "0";
             this.textMinimumSetting.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textMinimumSetting_KeyPress);
             // 
             // textMaximumSetting
             // 
-            this.textMaximumSetting.Location = new System.Drawing.Point(381, 258);
+            this.textMaximumSetting.Location = new System.Drawing.Point(421, 230);
             this.textMaximumSetting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textMaximumSetting.Multiline = true;
             this.textMaximumSetting.Name = "textMaximumSetting";
-            this.textMaximumSetting.Size = new System.Drawing.Size(76, 31);
+            this.textMaximumSetting.Size = new System.Drawing.Size(76, 36);
             this.textMaximumSetting.TabIndex = 31;
             this.textMaximumSetting.Text = "0";
             this.textMaximumSetting.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textMaximumSetting_KeyPress);
+            // 
+            // textBoxsamplerate
+            // 
+            this.textBoxsamplerate.Location = new System.Drawing.Point(36, 291);
+            this.textBoxsamplerate.Multiline = true;
+            this.textBoxsamplerate.Name = "textBoxsamplerate";
+            this.textBoxsamplerate.Size = new System.Drawing.Size(111, 36);
+            this.textBoxsamplerate.TabIndex = 32;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(33, 273);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(130, 15);
+            this.label3.TabIndex = 33;
+            this.label3.Text = "Set Sample Rate:(ms)";
+            // 
+            // samplestart
+            // 
+            this.samplestart.Location = new System.Drawing.Point(153, 291);
+            this.samplestart.Name = "samplestart";
+            this.samplestart.Size = new System.Drawing.Size(111, 36);
+            this.samplestart.TabIndex = 34;
+            this.samplestart.Text = "開始";
+            this.samplestart.UseVisualStyleBackColor = true;
+            this.samplestart.Click += new System.EventHandler(this.Samplestart_Click);
+            // 
+            // samplestop
+            // 
+            this.samplestop.Location = new System.Drawing.Point(270, 291);
+            this.samplestop.Name = "samplestop";
+            this.samplestop.Size = new System.Drawing.Size(111, 36);
+            this.samplestop.TabIndex = 35;
+            this.samplestop.Text = "結束";
+            this.samplestop.UseVisualStyleBackColor = true;
+            this.samplestop.Click += new System.EventHandler(this.Samplestop_Click);
+            // 
+            // setparameter
+            // 
+            this.setparameter.Location = new System.Drawing.Point(570, 19);
+            this.setparameter.Name = "setparameter";
+            this.setparameter.Size = new System.Drawing.Size(101, 29);
+            this.setparameter.TabIndex = 36;
+            this.setparameter.Text = "Set Parameter";
+            this.setparameter.UseVisualStyleBackColor = true;
+            this.setparameter.Click += new System.EventHandler(this.Setparameter_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(995, 476);
+            this.ClientSize = new System.Drawing.Size(1081, 476);
+            this.Controls.Add(this.setparameter);
+            this.Controls.Add(this.samplestop);
+            this.Controls.Add(this.samplestart);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBoxsamplerate);
             this.Controls.Add(this.textMaximumSetting);
             this.Controls.Add(this.textMinimumSetting);
             this.Controls.Add(this.buttonMaximumSetting);
@@ -401,7 +457,6 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,6 +494,11 @@
         private System.Windows.Forms.Button buttonMaximumSetting;
         private System.Windows.Forms.TextBox textMinimumSetting;
         private System.Windows.Forms.TextBox textMaximumSetting;
+        private System.Windows.Forms.TextBox textBoxsamplerate;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button samplestart;
+        private System.Windows.Forms.Button samplestop;
+        private System.Windows.Forms.Button setparameter;
     }
 }
 
