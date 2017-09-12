@@ -17,13 +17,14 @@ using System.Windows.Forms;
  * 3.Button處理(Enable、集合、相互關係)
  * 4.test
  * 
+ *
+ *
+ * 1.委派
+ * 2.Open的條件判斷
+ * 3.Button處理(Enable、集合、相互關係)
+ * 4.test
+ *
  */
-
-/*
- * 
- * test
- * 
- * /
 
 namespace COM
 {    
