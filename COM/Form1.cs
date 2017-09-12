@@ -18,12 +18,6 @@ using System.Windows.Forms;
  * 4.test
  * 
  *
- *
- * 1.委派
- * 2.Open的條件判斷
- * 3.Button處理(Enable、集合、相互關係)
- * 4.test
- *
  */
 namespace COM
 {    
@@ -285,7 +279,7 @@ namespace COM
                             {
                                 string indata = comport.ReadExisting();
                                 string pressure = indata.Substring(2, 6);
-                                textMachinePressure.AppendText(pressure);
+                                textMachinePressure.AppendText(pressure + "\n");
                             }
                             break;
                     }

@@ -1,11 +1,11 @@
-[下午 04:14]COM4 Connected
-[下午 04:14]Sent:SCV2,+00010
-[下午 04:14]Received: ok
+[下午 10:10]COM3 Connected
+[下午 10:10]Sent:SCV2,+00010
+[下午 10:10]Received: ok
 
-[下午 04:14]COM4 Connected
-[下午 04:14]Sent:SCV2,+00010
-[下午 04:14]Received: ok
+[下午 10:10]COM3 Connected
+[下午 10:10]Sent:SCV2,+00010
+[下午 10:10]Received: ok
 
-[下午 04:14]Sent:SCV1,+00100
-[下午 04:14]Received: ok
+[下午 10:10]Sent:SCV1,+00100
+[下午 10:10]Received: ok
 
