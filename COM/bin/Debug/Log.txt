@@ -1,7 +1,11 @@
-[下午 03:43]COM4 Connected
-[下午 03:43]Sent:RES
-[下午 03:43]Sent:RS-
-[下午 03:43]Sent:
-[下午 03:43]Received: ok
-RS-232C
+[下午 04:14]COM4 Connected
+[下午 04:14]Sent:SCV2,+00010
+[下午 04:14]Received: ok
+
+[下午 04:14]COM4 Connected
+[下午 04:14]Sent:SCV2,+00010
+[下午 04:14]Received: ok
+
+[下午 04:14]Sent:SCV1,+00100
+[下午 04:14]Received: ok
 

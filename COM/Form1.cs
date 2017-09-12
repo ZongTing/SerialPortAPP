@@ -56,6 +56,7 @@ namespace COM
             EVENT_SEND_CMD_MINIMUMLIMIT,//設定最小限制
             EVENT_SEND_CMD_MAXIMUMLIMIT,//設定最大限制
             EVENT_RECEIVE_CMD_MACHINESTATUS,//顯示機器狀態
+            EVENT_RECEIVE_CMD_MACHINEPRESSURE//顯示感測器讀數
         };
 
         private void threadProcess()
@@ -273,6 +274,14 @@ namespace COM
                                     okLightShown.ForeColor = Color.Black;
                             }
                             break;
+                        case queueType.EVENT_RECEIVE_CMD_MACHINEPRESSURE:
+                            if (comport.IsOpen)
+                            {
+                                string indata = comport.ReadExisting();
+                                string pressure = indata.Substring(2, 6);
+                                textMachinePressure.AppendText(pressure);
+                            }
+                            break;
                     }
                 }
             }
@@ -356,8 +365,8 @@ namespace COM
 
                 mQueue = new Queue<long>();
                 mThread = new Thread(threadProcess);
-                mThread.Start();                
-
+                mThread.Start();
+                textMachinePressure.Enabled = false;
                 //New Add, Need Try
                 //comport.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
             }
@@ -598,6 +607,7 @@ namespace COM
         }
 
         //sampling thread
+        /*
         private void Portsampling()
         {
             try
@@ -614,7 +624,7 @@ namespace COM
             {
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        }*/
 
         //開始觀察機器狀態
         private void buttonMachineStatusStart_Click(object sender, EventArgs e)
@@ -634,8 +644,8 @@ namespace COM
 
                     machineStatusThread = new Thread(machineStatus);
                     machineStatusThread.Start();
-                    Thread comThread = new Thread(Portsampling);
-                    comThread.Start();
+                    //Thread comThread = new Thread(Portsampling);
+                    //comThread.Start();
                 }
             }
             catch (Exception ex)
@@ -676,8 +686,11 @@ namespace COM
                 while (machineStatusLight)
                 {
                     comport.Write("GST\r\n");
-                    Thread.Sleep(175);
+                    Thread.Sleep(50);
                     mQueue.Enqueue((long)queueType.EVENT_RECEIVE_CMD_MACHINESTATUS);
+                    comport.Write("GDT1\r\n");
+                    Thread.Sleep(50);
+                    mQueue.Enqueue((long)queueType.EVENT_RECEIVE_CMD_MACHINEPRESSURE);
                 }
             }
             catch (Exception ex)
