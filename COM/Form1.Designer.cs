@@ -59,23 +59,22 @@
             this.buttonMaximumSetting = new System.Windows.Forms.Button();
             this.textMinimumSetting = new System.Windows.Forms.TextBox();
             this.textMaximumSetting = new System.Windows.Forms.TextBox();
-<<<<<<< HEAD
             this.textBoxsamplerate = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.samplestart = new System.Windows.Forms.Button();
             this.samplestop = new System.Windows.Forms.Button();
             this.setparameter = new System.Windows.Forms.Button();
-=======
-            this.lowLight = new System.Windows.Forms.Label();
-            this.OKlight = new System.Windows.Forms.Label();
-            this.highLight = new System.Windows.Forms.Label();
-            this.statusHighLight = new System.Windows.Forms.Label();
-            this.statusLowLight = new System.Windows.Forms.Label();
-            this.statusOKLight = new System.Windows.Forms.Label();
-            this.statusDuringMeasurement = new System.Windows.Forms.Label();
-            this.statusDetectingPeak = new System.Windows.Forms.Label();
-            this.statusDuringHold = new System.Windows.Forms.Label();
->>>>>>> Test01
+            this.highLightShown = new System.Windows.Forms.Label();
+            this.okLightShown = new System.Windows.Forms.Label();
+            this.lowLightShown = new System.Windows.Forms.Label();
+            this.buttonMachineStatusStart = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.buttonMachineStatusClose = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textMachinePressure = new System.Windows.Forms.TextBox();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -125,12 +124,12 @@
             this.textSend.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textSend.Multiline = true;
             this.textSend.Name = "textSend";
-            this.textSend.Size = new System.Drawing.Size(461, 86);
+            this.textSend.Size = new System.Drawing.Size(420, 86);
             this.textSend.TabIndex = 4;
             // 
             // buttonSend
             // 
-            this.buttonSend.Location = new System.Drawing.Point(519, 148);
+            this.buttonSend.Location = new System.Drawing.Point(463, 148);
             this.buttonSend.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(71, 36);
@@ -150,15 +149,11 @@
             // 
             // textShow
             // 
-<<<<<<< HEAD
-            this.textShow.Location = new System.Drawing.Point(596, 98);
-=======
-            this.textShow.Location = new System.Drawing.Point(714, 52);
->>>>>>> Test01
+            this.textShow.Location = new System.Drawing.Point(818, 62);
             this.textShow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textShow.Multiline = true;
             this.textShow.Name = "textShow";
-            this.textShow.Size = new System.Drawing.Size(265, 382);
+            this.textShow.Size = new System.Drawing.Size(251, 394);
             this.textShow.TabIndex = 11;
             // 
             // label4
@@ -259,11 +254,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-<<<<<<< HEAD
-            this.label8.Location = new System.Drawing.Point(773, 66);
-=======
-            this.label8.Location = new System.Drawing.Point(825, 20);
->>>>>>> Test01
+            this.label8.Location = new System.Drawing.Point(927, 26);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 15);
             this.label8.TabIndex = 20;
@@ -313,11 +304,7 @@
             // 
             // buttonIndicatedValue
             // 
-<<<<<<< HEAD
             this.buttonIndicatedValue.Location = new System.Drawing.Point(36, 230);
-=======
-            this.buttonIndicatedValue.Location = new System.Drawing.Point(102, 274);
->>>>>>> Test01
             this.buttonIndicatedValue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonIndicatedValue.Name = "buttonIndicatedValue";
             this.buttonIndicatedValue.Size = new System.Drawing.Size(120, 36);
@@ -328,11 +315,7 @@
             // 
             // buttonTransmissionMode00
             // 
-<<<<<<< HEAD
             this.buttonTransmissionMode00.Location = new System.Drawing.Point(162, 230);
-=======
-            this.buttonTransmissionMode00.Location = new System.Drawing.Point(36, 314);
->>>>>>> Test01
             this.buttonTransmissionMode00.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonTransmissionMode00.Name = "buttonTransmissionMode00";
             this.buttonTransmissionMode00.Size = new System.Drawing.Size(120, 36);
@@ -343,11 +326,7 @@
             // 
             // buttonTransmissionMode10
             // 
-<<<<<<< HEAD
             this.buttonTransmissionMode10.Location = new System.Drawing.Point(288, 230);
-=======
-            this.buttonTransmissionMode10.Location = new System.Drawing.Point(173, 314);
->>>>>>> Test01
             this.buttonTransmissionMode10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonTransmissionMode10.Name = "buttonTransmissionMode10";
             this.buttonTransmissionMode10.Size = new System.Drawing.Size(120, 36);
@@ -358,7 +337,7 @@
             // 
             // buttonMinimumSetting
             // 
-            this.buttonMinimumSetting.Location = new System.Drawing.Point(503, 190);
+            this.buttonMinimumSetting.Location = new System.Drawing.Point(106, 280);
             this.buttonMinimumSetting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonMinimumSetting.Name = "buttonMinimumSetting";
             this.buttonMinimumSetting.Size = new System.Drawing.Size(87, 36);
@@ -369,7 +348,7 @@
             // 
             // buttonMaximumSetting
             // 
-            this.buttonMaximumSetting.Location = new System.Drawing.Point(503, 230);
+            this.buttonMaximumSetting.Location = new System.Drawing.Point(106, 320);
             this.buttonMaximumSetting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonMaximumSetting.Name = "buttonMaximumSetting";
             this.buttonMaximumSetting.Size = new System.Drawing.Size(87, 36);
@@ -380,7 +359,8 @@
             // 
             // textMinimumSetting
             // 
-            this.textMinimumSetting.Location = new System.Drawing.Point(421, 190);
+            this.textMinimumSetting.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textMinimumSetting.Location = new System.Drawing.Point(24, 280);
             this.textMinimumSetting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textMinimumSetting.Multiline = true;
             this.textMinimumSetting.Name = "textMinimumSetting";
@@ -391,7 +371,8 @@
             // 
             // textMaximumSetting
             // 
-            this.textMaximumSetting.Location = new System.Drawing.Point(421, 230);
+            this.textMaximumSetting.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textMaximumSetting.Location = new System.Drawing.Point(24, 320);
             this.textMaximumSetting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textMaximumSetting.Multiline = true;
             this.textMaximumSetting.Name = "textMaximumSetting";
@@ -400,7 +381,6 @@
             this.textMaximumSetting.Text = "0";
             this.textMaximumSetting.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textMaximumSetting_KeyPress);
             // 
-<<<<<<< HEAD
             // textBoxsamplerate
             // 
             this.textBoxsamplerate.Location = new System.Drawing.Point(36, 291);
@@ -447,125 +427,130 @@
             this.setparameter.Text = "Set Parameter";
             this.setparameter.UseVisualStyleBackColor = true;
             this.setparameter.Click += new System.EventHandler(this.Setparameter_Click);
-=======
-            // lowLight
             // 
-            this.lowLight.AutoSize = true;
-            this.lowLight.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lowLight.Location = new System.Drawing.Point(631, 248);
-            this.lowLight.Name = "lowLight";
-            this.lowLight.Size = new System.Drawing.Size(49, 34);
-            this.lowLight.TabIndex = 33;
-            this.lowLight.Text = "●";
+            // highLightShown
             // 
-            // OKlight
+            this.highLightShown.AutoSize = true;
+            this.highLightShown.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.highLightShown.Location = new System.Drawing.Point(95, 21);
+            this.highLightShown.Name = "highLightShown";
+            this.highLightShown.Size = new System.Drawing.Size(49, 34);
+            this.highLightShown.TabIndex = 37;
+            this.highLightShown.Text = "●";
             // 
-            this.OKlight.AutoSize = true;
-            this.OKlight.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.OKlight.Location = new System.Drawing.Point(631, 160);
-            this.OKlight.Name = "OKlight";
-            this.OKlight.Size = new System.Drawing.Size(49, 34);
-            this.OKlight.TabIndex = 34;
-            this.OKlight.Text = "●";
+            // okLightShown
             // 
-            // highLight
+            this.okLightShown.AutoSize = true;
+            this.okLightShown.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.okLightShown.Location = new System.Drawing.Point(95, 88);
+            this.okLightShown.Name = "okLightShown";
+            this.okLightShown.Size = new System.Drawing.Size(49, 34);
+            this.okLightShown.TabIndex = 38;
+            this.okLightShown.Text = "●";
             // 
-            this.highLight.AutoSize = true;
-            this.highLight.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.highLight.Location = new System.Drawing.Point(631, 78);
-            this.highLight.Name = "highLight";
-            this.highLight.Size = new System.Drawing.Size(49, 34);
-            this.highLight.TabIndex = 35;
-            this.highLight.Text = "●";
+            // lowLightShown
             // 
-            // statusHighLight
+            this.lowLightShown.AutoSize = true;
+            this.lowLightShown.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lowLightShown.Location = new System.Drawing.Point(95, 155);
+            this.lowLightShown.Name = "lowLightShown";
+            this.lowLightShown.Size = new System.Drawing.Size(49, 34);
+            this.lowLightShown.TabIndex = 39;
+            this.lowLightShown.Text = "●";
             // 
-            this.statusHighLight.AutoSize = true;
-            this.statusHighLight.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.statusHighLight.Location = new System.Drawing.Point(576, 78);
-            this.statusHighLight.Name = "statusHighLight";
-            this.statusHighLight.Size = new System.Drawing.Size(49, 34);
-            this.statusHighLight.TabIndex = 36;
-            this.statusHighLight.Text = "●";
+            // buttonMachineStatusStart
             // 
-            // statusLowLight
+            this.buttonMachineStatusStart.Location = new System.Drawing.Point(3, 360);
+            this.buttonMachineStatusStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonMachineStatusStart.Name = "buttonMachineStatusStart";
+            this.buttonMachineStatusStart.Size = new System.Drawing.Size(101, 37);
+            this.buttonMachineStatusStart.TabIndex = 40;
+            this.buttonMachineStatusStart.Text = "開始";
+            this.buttonMachineStatusStart.UseVisualStyleBackColor = true;
+            this.buttonMachineStatusStart.Click += new System.EventHandler(this.buttonMachineStatusStart_Click);
             // 
-            this.statusLowLight.AutoSize = true;
-            this.statusLowLight.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.statusLowLight.Location = new System.Drawing.Point(576, 112);
-            this.statusLowLight.Name = "statusLowLight";
-            this.statusLowLight.Size = new System.Drawing.Size(49, 34);
-            this.statusLowLight.TabIndex = 37;
-            this.statusLowLight.Text = "●";
+            // label9
             // 
-            // statusOKLight
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(54, 35);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 15);
+            this.label9.TabIndex = 41;
+            this.label9.Text = "High";
             // 
-            this.statusOKLight.AutoSize = true;
-            this.statusOKLight.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.statusOKLight.Location = new System.Drawing.Point(576, 146);
-            this.statusOKLight.Name = "statusOKLight";
-            this.statusOKLight.Size = new System.Drawing.Size(49, 34);
-            this.statusOKLight.TabIndex = 38;
-            this.statusOKLight.Text = "●";
+            // label10
             // 
-            // statusDuringMeasurement
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(54, 102);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(27, 15);
+            this.label10.TabIndex = 42;
+            this.label10.Text = "OK";
             // 
-            this.statusDuringMeasurement.AutoSize = true;
-            this.statusDuringMeasurement.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.statusDuringMeasurement.Location = new System.Drawing.Point(576, 180);
-            this.statusDuringMeasurement.Name = "statusDuringMeasurement";
-            this.statusDuringMeasurement.Size = new System.Drawing.Size(49, 34);
-            this.statusDuringMeasurement.TabIndex = 39;
-            this.statusDuringMeasurement.Text = "●";
+            // label11
             // 
-            // statusDetectingPeak
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(54, 169);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(33, 15);
+            this.label11.TabIndex = 43;
+            this.label11.Text = "Low";
             // 
-            this.statusDetectingPeak.AutoSize = true;
-            this.statusDetectingPeak.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.statusDetectingPeak.Location = new System.Drawing.Point(576, 214);
-            this.statusDetectingPeak.Name = "statusDetectingPeak";
-            this.statusDetectingPeak.Size = new System.Drawing.Size(49, 34);
-            this.statusDetectingPeak.TabIndex = 40;
-            this.statusDetectingPeak.Text = "●";
+            // buttonMachineStatusClose
             // 
-            // statusDuringHold
+            this.buttonMachineStatusClose.Location = new System.Drawing.Point(106, 360);
+            this.buttonMachineStatusClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonMachineStatusClose.Name = "buttonMachineStatusClose";
+            this.buttonMachineStatusClose.Size = new System.Drawing.Size(101, 37);
+            this.buttonMachineStatusClose.TabIndex = 44;
+            this.buttonMachineStatusClose.Text = "結束";
+            this.buttonMachineStatusClose.UseVisualStyleBackColor = true;
+            this.buttonMachineStatusClose.Click += new System.EventHandler(this.buttonMachineStatusClose_Click);
             // 
-            this.statusDuringHold.AutoSize = true;
-            this.statusDuringHold.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.statusDuringHold.Location = new System.Drawing.Point(576, 248);
-            this.statusDuringHold.Name = "statusDuringHold";
-            this.statusDuringHold.Size = new System.Drawing.Size(49, 34);
-            this.statusDuringHold.TabIndex = 41;
-            this.statusDuringHold.Text = "●";
->>>>>>> Test01
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textMachinePressure);
+            this.groupBox1.Controls.Add(this.highLightShown);
+            this.groupBox1.Controls.Add(this.buttonMachineStatusClose);
+            this.groupBox1.Controls.Add(this.buttonMinimumSetting);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.buttonMaximumSetting);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.textMinimumSetting);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.textMaximumSetting);
+            this.groupBox1.Controls.Add(this.buttonMachineStatusStart);
+            this.groupBox1.Controls.Add(this.okLightShown);
+            this.groupBox1.Controls.Add(this.lowLightShown);
+            this.groupBox1.Location = new System.Drawing.Point(599, 54);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(213, 402);
+            this.groupBox1.TabIndex = 45;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "MachineStatus";
+            // 
+            // textMachinePressure
+            // 
+            this.textMachinePressure.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textMachinePressure.Location = new System.Drawing.Point(24, 216);
+            this.textMachinePressure.Multiline = true;
+            this.textMachinePressure.Name = "textMachinePressure";
+            this.textMachinePressure.Size = new System.Drawing.Size(169, 40);
+            this.textMachinePressure.TabIndex = 45;
+            this.textMachinePressure.Text = "0";
+            this.textMachinePressure.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1081, 476);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.setparameter);
             this.Controls.Add(this.samplestop);
             this.Controls.Add(this.samplestart);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxsamplerate);
-=======
-            this.ClientSize = new System.Drawing.Size(995, 476);
-            this.Controls.Add(this.statusDuringHold);
-            this.Controls.Add(this.statusDetectingPeak);
-            this.Controls.Add(this.statusDuringMeasurement);
-            this.Controls.Add(this.statusOKLight);
-            this.Controls.Add(this.statusLowLight);
-            this.Controls.Add(this.statusHighLight);
-            this.Controls.Add(this.highLight);
-            this.Controls.Add(this.OKlight);
-            this.Controls.Add(this.lowLight);
->>>>>>> Test01
-            this.Controls.Add(this.textMaximumSetting);
-            this.Controls.Add(this.textMinimumSetting);
-            this.Controls.Add(this.buttonMaximumSetting);
-            this.Controls.Add(this.buttonMinimumSetting);
             this.Controls.Add(this.buttonTransmissionMode10);
             this.Controls.Add(this.buttonTransmissionMode00);
             this.Controls.Add(this.buttonIndicatedValue);
@@ -594,6 +579,8 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -631,13 +618,13 @@
         private System.Windows.Forms.Button buttonMaximumSetting;
         private System.Windows.Forms.TextBox textMinimumSetting;
         private System.Windows.Forms.TextBox textMaximumSetting;
-<<<<<<< HEAD
+
         private System.Windows.Forms.TextBox textBoxsamplerate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button samplestart;
         private System.Windows.Forms.Button samplestop;
         private System.Windows.Forms.Button setparameter;
-=======
+
         private System.Windows.Forms.Label lowLight;
         private System.Windows.Forms.Label OKlight;
         private System.Windows.Forms.Label highLight;
@@ -647,7 +634,16 @@
         private System.Windows.Forms.Label statusDuringMeasurement;
         private System.Windows.Forms.Label statusDetectingPeak;
         private System.Windows.Forms.Label statusDuringHold;
->>>>>>> Test01
+        private System.Windows.Forms.Label highLightShown;
+        private System.Windows.Forms.Label okLightShown;
+        private System.Windows.Forms.Label lowLightShown;
+        private System.Windows.Forms.Button buttonMachineStatusStart;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button buttonMachineStatusClose;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox textMachinePressure;
     }
 }
 

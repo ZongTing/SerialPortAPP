@@ -24,18 +24,20 @@ namespace COM
 
     public partial class Form1 : Form
     {
-<<<<<<< HEAD
+
         public bool sampling = false;
+        public bool machineStatusLight = false;
         public int samplerate = 0;
 
-=======
+
         //機器安全壓力限制
         private int MachineSafePressure = 150;
->>>>>>> Test01
+
         //在Bin資料夾裡
         StreamWriter sw = new StreamWriter(@"Log.txt");
 
         private Thread mThread;
+        private Thread machineStatusThread;
         static Queue<long> mQueue;
         // TODO: I/O 
 
@@ -53,6 +55,7 @@ namespace COM
             EVENT_SEND_CMD_TXTUSING,//手動輸入指令區域
             EVENT_SEND_CMD_MINIMUMLIMIT,//設定最小限制
             EVENT_SEND_CMD_MAXIMUMLIMIT,//設定最大限制
+            EVENT_RECEIVE_CMD_MACHINESTATUS,//顯示機器狀態
         };
 
         private void threadProcess()
@@ -93,7 +96,6 @@ namespace COM
                                 textReceive.AppendText(indata + "\n");
                                 //寫入檔案
                                 sw.Write(textShow.Text);
-                                
                             }
                             break;
                         case queueType.EVENT_SEND_CMD_RSLINETEST:
@@ -186,7 +188,7 @@ namespace COM
                         case queueType.EVENT_RECEIVE_CMD_TRANSMISSIONMODE:
                             if (comport.IsOpen)
                             {
-                                comport.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+                                //comport.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
                             }
                             break;
                         case queueType.EVENT_SEND_CMD_TXTUSING:
@@ -241,6 +243,36 @@ namespace COM
                                 mQueue.Enqueue((long)queueType.EVENT_RECEIVE_CMD_DATA);
                             }
                             break;
+                        case queueType.EVENT_RECEIVE_CMD_MACHINESTATUS:
+                            if (comport.IsOpen)
+                            {
+                                string indata = comport.ReadExisting();
+                                int highLight = Convert.ToInt32(indata.Substring(1, 1));
+                                int lowLight = Convert.ToInt32(indata.Substring(2, 1));
+                                int okLight = Convert.ToInt32(indata.Substring(3, 1));
+
+                                if (highLight == 0)
+                                    highLightShown.ForeColor = Color.Red;
+                                else if (highLight == 1)
+                                    highLightShown.ForeColor = Color.Green;
+                                else
+                                    highLightShown.ForeColor = Color.Black;
+
+                                if (lowLight == 0)
+                                    lowLightShown.ForeColor = Color.Red;
+                                else if (lowLight == 1)
+                                    lowLightShown.ForeColor = Color.Green;
+                                else
+                                    lowLightShown.ForeColor = Color.Black;
+
+                                if (okLight == 0)
+                                    okLightShown.ForeColor = Color.Red;
+                                else if (okLight == 1)
+                                    okLightShown.ForeColor = Color.Green;
+                                else
+                                    okLightShown.ForeColor = Color.Black;
+                            }
+                            break;
                     }
                 }
             }
@@ -281,7 +313,6 @@ namespace COM
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //MessageBox.Show(ex.ToString(), "Error");
             }
         }
 
@@ -294,10 +325,11 @@ namespace COM
             String dateTimeNow = dateTime.ToShortTimeString();
 
             string indata = sp.ReadExisting();
+
             string MachineStatus = indata.Substring(11, 8);
 
             //切割所需字串
-            textShow.AppendText("[" + dateTimeNow + "]" + "Received: " + indata.Substring(2, 6) + "\n");
+            textShow.AppendText("[" + dateTimeNow + "]" + "Received: " + indata/*.Substring(2, 6)*/ + "\n");
 
             //判斷重量是否超出標準
             if (Convert.ToInt32(indata.Substring(3, 5)) > MachineSafePressure)
@@ -306,24 +338,6 @@ namespace COM
             }
 
             textReceive.AppendText(indata + "\n");
-        }
-
-        //sampling thread
-        private void Portsampling()
-        {
-            try
-            {
-                while (sampling)
-                {
-                    comport.Write("GDT1\r\n");
-                    mQueue.Enqueue((long)queueType.EVENT_RECEIVE_CMD_DATA);
-                    Thread.Sleep(samplerate);                    
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         //需要更改
@@ -342,8 +356,10 @@ namespace COM
 
                 mQueue = new Queue<long>();
                 mThread = new Thread(threadProcess);
-                mThread.Start();
-                
+                mThread.Start();                
+
+                //New Add, Need Try
+                //comport.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
             }
         }
 
@@ -360,6 +376,10 @@ namespace COM
                     if (mThread.IsAlive)
                     {
                         mThread.Abort();
+                    }
+                    if (machineStatusThread.IsAlive)
+                    {
+                        machineStatusThread.Abort();
                     }
                     comport.Close();
                     buttonClose.Enabled = false;
@@ -408,45 +428,6 @@ namespace COM
         {
             if (comport.IsOpen)
                 mQueue.Enqueue((long)queueType.EVENT_SEND_CMD_INDICATEDVALUE);
-        }
-
-        //start sampling
-        private void Samplestart_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (comport.IsOpen)
-                {
-                    sampling = true;
-                    samplestart.Enabled = false;
-                    samplestop.Enabled = true;
-                    samplerate = Convert.ToInt32(textBoxsamplerate.Text);
-                    Thread comThread = new Thread(Portsampling);
-                    comThread.Start();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        //stop sampling
-        private void Samplestop_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (comport.IsOpen)
-                {
-                    sampling = false;
-                    samplestart.Enabled = true;
-                    samplestop.Enabled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         //set parameter
@@ -536,6 +517,177 @@ namespace COM
 
         #endregion
 
+        #region 最大最小按鈕
+        //設定最小限制
+        private void buttonMinimumSetting_Click(object sender, EventArgs e)
+        {
+            if (comport.IsOpen)
+            {
+                if (textMinimumSetting.Text != "")
+                    mQueue.Enqueue((long)queueType.EVENT_SEND_CMD_MINIMUMLIMIT);
+            }
+        }
+
+        //限制只能輸入數字
+        private void textMinimumSetting_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((int)e.KeyChar < 48 | (int)e.KeyChar > 57) & (int)e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        //設定最大限制
+        private void buttonMaximumSetting_Click(object sender, EventArgs e)
+        {
+            if (comport.IsOpen)
+            {
+                if (textMaximumSetting.Text != "")
+                    mQueue.Enqueue((long)queueType.EVENT_SEND_CMD_MAXIMUMLIMIT);
+            }
+        }
+
+        //限制只能輸入數字
+        private void textMaximumSetting_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((int)e.KeyChar < 48 | (int)e.KeyChar > 57) & (int)e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
+        }
+        #endregion
+
+        #region Sampling and Machine status
+        //start sampling
+        private void Samplestart_Click(object sender, EventArgs e)
+        {/*
+            try
+            {
+                if (comport.IsOpen)
+                {
+                    sampling = true;
+                    samplestart.Enabled = false;
+                    samplestop.Enabled = true;
+                    samplerate = Convert.ToInt32(textBoxsamplerate.Text);
+                    Thread comThread = new Thread(Portsampling);
+                    comThread.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }*/
+        }
+
+        //stop sampling
+        private void Samplestop_Click(object sender, EventArgs e)
+        {/*
+            try
+            {
+                if (comport.IsOpen)
+                {
+                    sampling = false;
+                    samplestart.Enabled = true;
+                    samplestop.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }*/
+        }
+
+        //sampling thread
+        private void Portsampling()
+        {
+            try
+            {
+                while (sampling)
+                {
+                    comport.Write("GDT1\r\n");
+                    Thread.Sleep(10);
+                    mQueue.Enqueue((long)queueType.EVENT_RECEIVE_CMD_DATA);
+                    //Thread.Sleep(samplerate);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //開始觀察機器狀態
+        private void buttonMachineStatusStart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comport.IsOpen)
+                {
+                    textMinimumSetting.Enabled = false;
+                    textMaximumSetting.Enabled = false;
+                    buttonMinimumSetting.Enabled = false;
+                    buttonMaximumSetting.Enabled = false;
+                    machineStatusLight = true;
+                    buttonMachineStatusStart.Enabled = false;
+                    buttonMachineStatusClose.Enabled = true;
+                    sampling = true;
+
+                    machineStatusThread = new Thread(machineStatus);
+                    machineStatusThread.Start();
+                    Thread comThread = new Thread(Portsampling);
+                    comThread.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
+        //停止觀察機器狀態
+        private void buttonMachineStatusClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comport.IsOpen)
+                {
+                    textMinimumSetting.Enabled = true;
+                    textMaximumSetting.Enabled = true;
+                    buttonMinimumSetting.Enabled = true;
+                    buttonMaximumSetting.Enabled = true;
+                    machineStatusLight = false;
+                    buttonMachineStatusStart.Enabled = true;
+                    buttonMachineStatusClose.Enabled = false;
+                    sampling = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //machine status thread
+        private void machineStatus()
+        {
+            try
+            {
+                while (machineStatusLight)
+                {
+                    comport.Write("GST\r\n");
+                    Thread.Sleep(175);
+                    mQueue.Enqueue((long)queueType.EVENT_RECEIVE_CMD_MACHINESTATUS);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
         //MOD00
         private void buttonTransmissionMode00_Click(object sender, EventArgs e)
         {
@@ -575,45 +727,6 @@ namespace COM
             }
         }
 
-        #region 最大最小按鈕
-        //設定最小限制
-        private void buttonMinimumSetting_Click(object sender, EventArgs e)
-        {
-            if (comport.IsOpen)
-            {
-                if (textMinimumSetting.Text != "")
-                    mQueue.Enqueue((long)queueType.EVENT_SEND_CMD_MINIMUMLIMIT);
-            }
-        }
-
-        //限制只能輸入數字
-        private void textMinimumSetting_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (((int)e.KeyChar < 48 | (int)e.KeyChar > 57) & (int)e.KeyChar != 8)
-            {
-                e.Handled = true;
-            }
-        }
-
-        //設定最大限制
-        private void buttonMaximumSetting_Click(object sender, EventArgs e)
-        {
-            if (comport.IsOpen)
-            {
-                if(textMaximumSetting.Text != "")
-                mQueue.Enqueue((long)queueType.EVENT_SEND_CMD_MAXIMUMLIMIT);
-            }
-        }
-
-        //限制只能輸入數字
-        private void textMaximumSetting_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (((int)e.KeyChar < 48 | (int)e.KeyChar > 57) & (int)e.KeyChar != 8)
-            {
-                e.Handled = true;
-            }
-        }
-        #endregion
 
     }
 }
